@@ -18,7 +18,11 @@ public class ClienteControlador {
 
     @GetMapping("/consultar")
     @JsonView(Cliente.sinDocumento.class)
-    public Cliente consultarDatosCliente(@Valid @RequestBody ConsultarClienteDTO consultarClienteDTO) {
+    public Cliente consultarDatosCliente(@RequestParam String tipoDocumento, @RequestParam String numeroDocumento) {
+        ConsultarClienteDTO consultarClienteDTO = new ConsultarClienteDTO(
+                tipoDocumento,
+                numeroDocumento
+        );
         return clienteServicio.consultarDatosCliente(consultarClienteDTO);
     }
 }
